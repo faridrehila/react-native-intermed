@@ -18,10 +18,11 @@ export default function FeedsScreen({navigation}) {
     },
   );
 
-  const onPressItem = (link, title) => {
+  const onPressItem = (id, feedUrl, title) => {
     navigation.navigate('FeedScreen', {
-      feedUrl: link,
-      title: title,
+      id,
+      feedUrl,
+      title,
     });
   };
 
@@ -46,7 +47,7 @@ export default function FeedsScreen({navigation}) {
   };
 
   return (
-    <IntermedScreen>
+    <IntermedScreen navigation={navigation}>
       <ListScreen
         data={(data && data.feeds) || []}
         isFetching={loading}

@@ -20,23 +20,20 @@ export default function ListScreen({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [loadingNextPage, setLoadingNextPage] = useState(false);
 
-  const _renderItem = ({item}) => {
-    console.log('ITEM', item);
-    return (
-      <ListItem
-        key={item.id}
-        id={item.id}
-        title={item.title}
-        link={item.link}
-        image={item.image}
-        pubDate={item.pubDate}
-        duration={item.readTime}
-        source={item.source}
-        navigation={navigation}
-        onPressItem={onPressItem}
-      />
-    );
-  };
+  const _renderItem = ({item}) => (
+    <ListItem
+      key={item.id}
+      id={item.id}
+      title={item.title}
+      link={item.link}
+      image={item.image}
+      pubDate={item.pubDate}
+      duration={item.readTime}
+      source={item.source}
+      navigation={navigation}
+      onPressItem={onPressItem}
+    />
+  );
 
   const _onEndReach = () => {
     if (

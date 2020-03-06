@@ -1,68 +1,68 @@
-import React from 'react';
-import {View, TouchableHighlight, AsyncStorage} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, TouchableHighlight} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import PropTypes from 'prop-types';
+import {useQuery} from '@apollo/react-hooks';
 
-import CONST from '../../../lib/const';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+import _const from '../../../lib/const';
+import _queries from '../../../api/feeds/queries';
 
-class Bookmark extends React.PureComponent {
-  state = {
-    isBookmarked: false,
-  };
+export default function Bookmark({feedId}) {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const {loading, error, data} = useQuery(_queries.GET_FEED_BY_ID(feedId));
 
-  componentDidMount() {
-    this.isArticleBookmarked();
-  }
+  useEffect(() => {
+    AsyncStorage.getItem(`@feeds:${feedId}`)
+      .then(data => {
+        if (data && data.readTime !== 0) setIsBookmarked(true);
+      })
+      .done();
+  }, []);
 
-  onPress = () => {
-    if (!this.state.isBookmarked) {
-      try {
-        AsyncStorage.setItem(
-          `@MyArticles:${this.props.id}`,
-          JSON.stringify(this.props.data),
-        ).then(() => {
-          this.setState({isBookmarked: true});
-        });
-      } catch (error) {
-        // Error saving data
-        console.log('error saving in storage!', error);
-      }
-    } else {
-      // Remove article
-      try {
-        AsyncStorage.removeItem(`@MyArticles:${this.props.id}`).then(() => {
-          this.setState({isBookmarked: false});
-          this.props.onPressBookmark && this.props.onPressBookmark();
-        });
-      } catch (error) {
-        // Error saving data
-        console.log('error deleting in storage !', error);
-      }
+  const saveFeed = async () => {
+    try {
+      await AsyncStorage.setItem(
+        `@feeds:${feedId}`,
+        JSON.stringify(data.feeds[0]),
+      );
+      setIsBookmarked(true);
+    } catch (e) {
+      setIsBookmarked(true);
+      console.log('couldnt save feed');
     }
   };
 
-  isArticleBookmarked = () => {
-    AsyncStorage.getItem(`@MyArticles:${this.props.id}`)
-      .then(data => {
-        if (data && data.readTime !== 0) this.setState({isBookmarked: true});
-      })
-      .done();
+  const deleteFeed = async () => {
+    try {
+      await AsyncStorage.removeItem(`@feeds:${feedId}`);
+      setIsBookmarked(false);
+    } catch (e) {
+      setIsBookmarked(true);
+      console.log('couldnt save feed');
+    }
   };
 
-  render() {
-    return (
+  if (loading || error) return <View />;
+
+  return (
+    <TouchableHighlight
+      onPress={() => (isBookmarked ? deleteFeed() : saveFeed())}>
       <View>
-        <TouchableHighlight
-          onPress={this.onPress}
-          underlayColor={'transparent'}>
-          <View>
-            {/*  {this.state.isBookmarked && <IconBookmark />}
-            {!this.state.isBookmarked && (
-              <IconBookmark color={CONST.COLOR_MAINBLUE} />
-            )} */}
-          </View>
-        </TouchableHighlight>
+        {isBookmarked ? (
+          <Icon name={'bookmark'} color={_const.COLOR_MAINRED} size={30} />
+        ) : (
+          <Icon
+            name={'bookmark-border'}
+            color={_const.COLOR_MAINRED}
+            size={30}
+          />
+        )}
       </View>
-    );
-  }
+    </TouchableHighlight>
+  );
 }
 
-export default Bookmark;
+Bookmark.propTypes = {
+  feedId: PropTypes.number,
+};

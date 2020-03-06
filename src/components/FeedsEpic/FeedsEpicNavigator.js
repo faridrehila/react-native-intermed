@@ -8,6 +8,7 @@ import SourceScreen from './SourceScreen/SourceScreen';
 import _const from '../../lib/const';
 import HeaderRightFeedScreen from './FeedScreen/HeaderRightFeedScreen';
 import FeedScreen from './FeedScreen/index';
+import HeaderLeft from '../_Shared/HeaderScreen/HeaderLeft';
 
 const renderBackBtn = () => {
   <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -22,7 +23,8 @@ const FeedsNavigator = StackNavigator(
     FeedsScreen: {
       screen: FeedsScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: 'Feed',
+        headerTitle: <Text style={_const.INTERMED_TITLE_MOBILE}>Intermed</Text>,
+        headerLeft: <HeaderLeft />,
         //headerRight: <HeaderRightFeedScreen navigation={navigation} />,
         tabBarVisible: false,
       }),
@@ -36,7 +38,7 @@ const FeedsNavigator = StackNavigator(
         headerRight: <HeaderRightFeedScreen navigation={navigation} />,
         tabBarVisible: false,
       }),
-      path: ':feedUrl',
+      path: ':feedUrl/:id',
     },
     SourceScreen: {
       screen: SourceScreen,

@@ -91,8 +91,41 @@ const GET_ALL_FEEDS_FILTER_BY_SOURCE = gql`
   }
 `;
 
+const GET_ALL_SOURCES = gql`
+  query GetAllSources {
+    sources(order_by: {name: asc}) {
+      id
+      name
+    }
+  }
+`;
+
+const GET_FEED_BY_ID = feedId => gql`
+  query GetFeed {
+    feeds(where: {id: {_eq: ${feedId}}}) {
+      author
+      body
+      id
+      image
+      link
+      pubDate
+      readTime
+      summary
+      source_id
+      title
+      type
+      source {
+        id
+        name
+      }
+    }
+  }
+`;
+
 export default {
   GET_ALL_FEEDS,
   GET_ALL_FEEDS_FILTER_BY_TYPE,
   GET_ALL_FEEDS_FILTER_BY_SOURCE,
+  GET_ALL_SOURCES,
+  GET_FEED_BY_ID,
 };

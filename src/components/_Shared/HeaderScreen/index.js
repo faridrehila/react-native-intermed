@@ -1,11 +1,30 @@
 import React from 'react';
 import {StyleSheet, TouchableHighlight, View, Text} from 'react-native';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-export default function HeaderScreen({title, right, left}) {
+import {openSideBar, closeSideBar} from '../../../redux/actions/sideBarActions';
+import _const from '../../../lib/const';
+
+function HeaderScreen({
+  title,
+  right,
+  isSideBarOpen,
+  reduxOpenSideBar,
+  reduxCloseSideBar,
+}) {
+  console.log('this.pops', reduxCloseSideBar, reduxOpenSideBar);
+  const toggleSideBar = () => {
+    if (isSideBarOpen) {
+      closeSideBar();
+    } else {
+      openSideBar();
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.containerLeft}>{/* <Text>left menu</Text> */}</View>
+      <View style={styles.containerLeft}></View>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.containerRight}>
         {right &&
@@ -44,6 +63,22 @@ const styles = StyleSheet.create({
 
 HeaderScreen.propTypes = {
   left: PropTypes.bool,
+  isSideBarOpen: PropTypes.bool,
   right: PropTypes.array,
   title: PropTypes.string,
 };
+
+const mapStateToProps = state => {
+  return {
+    isSideBarOpen: state.sideBarReducer.isSideBarOpen,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    reduxOpenSideBar: () => dispatch(openSideBar()),
+    reduxCloseSideBar: () => dispatch(closeSideBar()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderScreen);

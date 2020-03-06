@@ -19,8 +19,9 @@ export default function ListItem({
 }) {
   return (
     <TouchableHighlight
+      underlayColor="lightgrey"
       style={styles.container}
-      onPress={() => onPressItem(link, title)}>
+      onPress={() => onPressItem(id, link, title)}>
       <View style={styles.subContainer}>
         <View style={{width: 130}}>
           <ListItemImage image={image} />

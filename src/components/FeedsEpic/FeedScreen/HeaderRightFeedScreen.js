@@ -2,8 +2,8 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
-// import Bookmark from '../Bookmark';
 import ShareComponent from '../../_Shared/ShareComponent';
+import Bookmark from '../../_Shared/Bookmark';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,11 +16,7 @@ const styles = StyleSheet.create({
 export default function HeaderRightFeedScreen({navigation}) {
   return (
     <View style={styles.container}>
-      {/* <Bookmark
-      id={navigation.state.params.feed.id}
-      data={navigation.state.params.feed}
-      color={'#fff'}
-    /> */}
+      <Bookmark feedId={navigation.state.params.id} />
       <ShareComponent />
     </View>
   );
