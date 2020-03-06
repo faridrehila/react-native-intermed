@@ -23,7 +23,6 @@ function SideBarMenu({navigation, isSideBarOpen, reduxCloseSideBar}) {
         styles.container,
         {backgroundColor: isSideBarOpen ? 'white' : 'transparent'},
       ]}>
-      {loading && <ActivityIndicator />}
       {data &&
         data.sources.map(source => (
           <TouchableHighlight
