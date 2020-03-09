@@ -1,18 +1,27 @@
 import React from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import {View, Text, ActivityIndicator, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
 export default function EmptyListScreen({isFetching}) {
   return (
-    <View style={{flex: 1, justifyContent: 'center'}}>
+    <View style={styles.container}>
       {isFetching ? (
         <ActivityIndicator animating size={'large'} />
       ) : (
-        <Text>Aucun articles trouvés.</Text>
+        <Text style={styles.emptyText}>Aucun articles trouvés.</Text>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 150,
+    justifyContent: 'center',
+  },
+  emptyText: {textAlign: 'center', fontSize: 18},
+});
 
 EmptyListScreen.propTypes = {
   isFetching: PropTypes.bool,

@@ -43,7 +43,7 @@ export default function Bookmark({feedId}) {
     }
   };
 
-  if (loading || error) return <View />;
+  if (loading) return <View />;
 
   return (
     <TouchableHighlight
