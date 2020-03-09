@@ -7,7 +7,9 @@ import _const from '../../lib/const';
 export default StackNavigator(
   {
     FeedsEpic: {
-      screen: FeedsEpicNavigator,
+      screen: ({navigation, screenProps}) => (
+        <FeedsEpicNavigator screenProps={screenProps} />
+      ),
       path: 'articles',
       navigationOptions: {header: null},
     },

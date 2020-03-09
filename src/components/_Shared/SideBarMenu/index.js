@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ActivityIndicator,
-  TouchableHighlight,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useQuery} from '@apollo/react-hooks';
@@ -13,19 +7,20 @@ import {useQuery} from '@apollo/react-hooks';
 import {closeSideBar} from '../../../redux/actions/sideBarActions';
 import _queries from '../../../api/feeds/queries';
 import _const from '../../../lib/const';
+import ThemedText from '../ThemedComponents/ThemedText';
+import ThemedTouchable from '../ThemedComponents/ThemedTouchable';
+import ThemedView from '../ThemedComponents/ThemedView';
 
-function SideBarMenu({navigation, isSideBarOpen, reduxCloseSideBar}) {
+function SideBarMenu({navigation, reduxCloseSideBar}) {
   const {loading, data} = useQuery(_queries.GET_ALL_SOURCES);
 
+  if (loading) return <View />;
+
   return (
-    <View
-      style={[
-        styles.container,
-        {backgroundColor: isSideBarOpen ? 'white' : 'transparent'},
-      ]}>
+    <ThemedView style={styles.container}>
       {data &&
         data.sources.map(source => (
-          <TouchableHighlight
+          <ThemedTouchable
             key={source.id}
             onPress={() => {
               navigation.navigate('SourceScreen', {
@@ -35,10 +30,10 @@ function SideBarMenu({navigation, isSideBarOpen, reduxCloseSideBar}) {
               reduxCloseSideBar();
             }}
             style={styles.sourceTile}>
-            <Text style={styles.source}>{source.name}</Text>
-          </TouchableHighlight>
+            <ThemedText style={styles.source}>{source.name}</ThemedText>
+          </ThemedTouchable>
         ))}
-    </View>
+    </ThemedView>
   );
 }
 
@@ -62,14 +57,7 @@ const styles = StyleSheet.create({
 
 SideBarMenu.propTypes = {
   navigation: PropTypes.object,
-  isSideBarOpen: PropTypes.bool,
   reduxCloseSideBar: PropTypes.func,
-};
-
-const mapStateToProps = state => {
-  return {
-    isSideBarOpen: state.sideBarReducer.isSideBarOpen,
-  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -78,4 +66,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideBarMenu);
+export default connect(null, mapDispatchToProps)(SideBarMenu);

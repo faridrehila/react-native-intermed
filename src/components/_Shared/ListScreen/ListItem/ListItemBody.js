@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
 import ListItemBodyDetails from './ListItemBodyDetails';
+import ThemedText from '../../ThemedComponents/ThemedText';
 
 export default function ListItemBody({
   id,
@@ -14,7 +15,7 @@ export default function ListItemBody({
 }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      <ThemedText style={styles.title}>{title}</ThemedText>
 
       <ListItemBodyDetails
         readTime={duration}
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
   },
   title: {
     maxWidth: '90%',
-    color: 'black',
     fontWeight: 'bold',
     fontSize: 17,
   },

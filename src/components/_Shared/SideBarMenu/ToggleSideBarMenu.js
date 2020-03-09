@@ -2,12 +2,16 @@ import React from 'react';
 import {TouchableHighlight, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 import {openSideBar, closeSideBar} from '../../../redux/actions/sideBarActions';
 import _const from '../../../lib/const';
+import ThemedIcon from '../ThemedComponents/ThemedIcon';
 
-function HeaderLeft({isSideBarOpen, reduxOpenSideBar, reduxCloseSideBar}) {
+function ToggleSideBarMenu({
+  isSideBarOpen,
+  reduxOpenSideBar,
+  reduxCloseSideBar,
+}) {
   const toggleSideBar = () => {
     if (isSideBarOpen) {
       reduxCloseSideBar();
@@ -22,13 +26,13 @@ function HeaderLeft({isSideBarOpen, reduxOpenSideBar, reduxCloseSideBar}) {
       style={{marginLeft: 10}}
       underlayColor={'lightgrey'}>
       <View>
-        <Icon name="menu" color={_const.COLOR_MAINRED} size={32} />
+        <ThemedIcon name="menu" color={_const.COLOR_MAINRED} size={32} />
       </View>
     </TouchableHighlight>
   );
 }
 
-HeaderLeft.propTypes = {
+ToggleSideBarMenu.propTypes = {
   isSideBarOpen: PropTypes.bool,
   reduxCloseSideBar: PropTypes.func,
   reduxOpenSideBar: PropTypes.func,
@@ -47,4 +51,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderLeft);
+export default connect(mapStateToProps, mapDispatchToProps)(ToggleSideBarMenu);

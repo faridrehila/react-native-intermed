@@ -1,6 +1,8 @@
 import React from 'react';
-import {TouchableHighlight, View, Text, StyleSheet} from 'react-native';
+import {TouchableHighlight, View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
+
+import ThemedText from '../../ThemedComponents/ThemedText';
 
 export default function ListItemBodyDetails({
   source: {id, name},
@@ -13,10 +15,10 @@ export default function ListItemBodyDetails({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTime}>Lecture: {readTime} min.</Text>
+      <ThemedText style={styles.textTime}>Lecture: {readTime} min.</ThemedText>
 
       <TouchableHighlight onPress={navigateToSourceScreen}>
-        <Text style={styles.textSource}>{name}</Text>
+        <ThemedText style={styles.textSource}>{name}</ThemedText>
       </TouchableHighlight>
 
       <View style={styles.bookmark}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
@@ -7,16 +7,15 @@ import {connect} from 'react-redux';
 import _const from '../../../lib/const';
 import _queries from '../../../api/feeds/queries';
 import SideBarMenu from '../SideBarMenu';
+import {ThemeContext} from '../../../context/ThemeProvider';
 
 function IntermedScreen({children, navigation, isSideBarOpen}) {
+  const {theme} = useContext(ThemeContext);
   const menu = <SideBarMenu navigation={navigation} />;
 
   return (
     <View style={{flex: 1}}>
-      <StatusBar
-        backgroundColor={_const.COLOR_MAINRED}
-        barStyle="light-content"
-      />
+      <StatusBar backgroundColor={theme.statusBar} barStyle="light-content" />
       <SideMenu menu={menu} isOpen={isSideBarOpen}>
         {children}
       </SideMenu>

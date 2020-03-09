@@ -1,10 +1,10 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
 import MainNavigator from './MainNavigator';
 import SplashScreen from '../SplashEpic/SplashScreen/SplashScreen';
 
-export default AppNavigator = StackNavigator(
+export default AppNavigator = createStackNavigator(
   {
     SplashScreen: {
       screen: SplashScreen,
@@ -13,12 +13,7 @@ export default AppNavigator = StackNavigator(
     },
     MainNavigator: {
       screen: ({navigation, screenProps}) => (
-        <MainNavigator
-          screenProps={{
-            parentNavigation: navigation,
-            ...screenProps,
-          }}
-        />
+        <MainNavigator screenProps={screenProps} />
       ),
       navigationOptions: {
         header: null,

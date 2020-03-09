@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import {navigateOnce} from '../../util/navigationUtil';
 
@@ -8,47 +7,45 @@ import SourceScreen from './SourceScreen/SourceScreen';
 import _const from '../../lib/const';
 import HeaderRightFeedScreen from './FeedScreen/HeaderRightFeedScreen';
 import FeedScreen from './FeedScreen/index';
-import HeaderLeft from '../_Shared/HeaderScreen/HeaderLeft';
-
-const renderBackBtn = () => {
-  <TouchableOpacity onPress={() => navigation.goBack()}>
-    <View style={{marginLeft: 10}}>
-      <Text>Back</Text>
-    </View>
-  </TouchableOpacity>;
-};
+import ToggleSideBarMenu from '../_Shared/SideBarMenu/ToggleSideBarMenu';
+import ThemeSwitch from '../_Shared/ThemeSwitch';
+import ThemedHeaderTile from '../_Shared/ThemedComponents/ThemedHeaderTile';
 
 const FeedsNavigator = StackNavigator(
   {
     FeedsScreen: {
       screen: FeedsScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <Text style={_const.INTERMED_TITLE_MOBILE}>Intermed</Text>,
-        headerLeft: <HeaderLeft />,
-        //headerRight: <HeaderRightFeedScreen navigation={navigation} />,
+      navigationOptions: ({navigation, screenProps}) => ({
+        headerTitle: <ThemedHeaderTile title={'Intermed'} />,
+        headerLeft: <ToggleSideBarMenu />,
+        headerRight: <ThemeSwitch />,
         tabBarVisible: false,
+        headerStyle: {
+          backgroundColor: screenProps.background,
+        },
       }),
-
       path: '',
     },
     FeedScreen: {
       screen: FeedScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: renderBackBtn(),
+      navigationOptions: ({navigation, screenProps}) => ({
         headerRight: <HeaderRightFeedScreen navigation={navigation} />,
         tabBarVisible: false,
+        headerStyle: {
+          backgroundColor: screenProps.background,
+        },
+        headerTintColor: screenProps.foreground,
       }),
       path: ':feedUrl/:id',
     },
     SourceScreen: {
       screen: SourceScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: renderBackBtn(),
-        headerTitle: (
-          <Text style={_const.INTERMED_TITLE_MOBILE}>
-            {navigation.state.params.name}
-          </Text>
-        ),
+      navigationOptions: ({navigation, screenProps}) => ({
+        headerTitle: <ThemedHeaderTile title={navigation.state.params.name} />,
+        headerStyle: {
+          backgroundColor: screenProps.background,
+        },
+        headerTintColor: screenProps.foreground,
       }),
       path: 'source/:id/:name',
     },

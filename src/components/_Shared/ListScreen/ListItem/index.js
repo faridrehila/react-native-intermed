@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
 import _const from '../../../../lib/const';
 import ListItemImage from './ListItemImage';
 import ListItemBody from './ListItemBody';
+import ThemedTouchable from '../../ThemedComponents/ThemedTouchable';
 
 export default function ListItem({
   id,
@@ -18,8 +19,7 @@ export default function ListItem({
   onPressItem,
 }) {
   return (
-    <TouchableHighlight
-      underlayColor="lightgrey"
+    <ThemedTouchable
       style={styles.container}
       onPress={() => onPressItem(id, link, title)}>
       <View style={styles.subContainer}>
@@ -36,15 +36,14 @@ export default function ListItem({
           onPressBookmark={onPressBookmark}
         />
       </View>
-    </TouchableHighlight>
+    </ThemedTouchable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    borderBottomColor: _const.COLOR_SHADE1,
     borderBottomWidth: 3,
+    borderBottomColor: _const.COLOR_SHADE3,
     minHeight: 130,
   },
   subContainer: {

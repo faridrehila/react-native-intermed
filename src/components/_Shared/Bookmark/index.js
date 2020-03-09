@@ -4,9 +4,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import PropTypes from 'prop-types';
 import {useQuery} from '@apollo/react-hooks';
 
-import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import _const from '../../../lib/const';
 import _queries from '../../../api/feeds/queries';
+import ThemedIcon from '../ThemedComponents/ThemedIcon';
 
 export default function Bookmark({feedId}) {
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -50,9 +50,13 @@ export default function Bookmark({feedId}) {
       onPress={() => (isBookmarked ? deleteFeed() : saveFeed())}>
       <View>
         {isBookmarked ? (
-          <Icon name={'bookmark'} color={_const.COLOR_MAINRED} size={30} />
+          <ThemedIcon
+            name={'bookmark'}
+            color={_const.COLOR_MAINRED}
+            size={30}
+          />
         ) : (
-          <Icon
+          <ThemedIcon
             name={'bookmark-border'}
             color={_const.COLOR_MAINRED}
             size={30}
