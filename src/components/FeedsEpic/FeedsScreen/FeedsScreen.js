@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useQuery} from '@apollo/react-hooks';
 
 import ListScreen from '../../_Shared/ListScreen';
-import _queries from '../../../api/feeds/queries';
+import _queries from '../../../api/feeds';
 import _const from '../../../lib/const';
 import IntermedScreen from '../../_Shared/IntermedScreen';
 
@@ -18,10 +18,10 @@ export default function FeedsScreen({navigation}) {
     },
   );
 
-  const onPressItem = (id, feedUrl, title) => {
+  const onPressItem = ({id, link, title}) => {
     navigation.navigate('FeedScreen', {
       id,
-      feedUrl,
+      feedUrl: link,
       title,
     });
   };

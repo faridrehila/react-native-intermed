@@ -5,16 +5,16 @@ import {connect} from 'react-redux';
 import {useQuery} from '@apollo/react-hooks';
 
 import {closeSideBar} from '../../../redux/actions/sideBarActions';
-import _queries from '../../../api/feeds/queries';
+import _queries from '../../../api/feeds';
 import _const from '../../../lib/const';
 import ThemedText from '../ThemedComponents/ThemedText';
 import ThemedTouchable from '../ThemedComponents/ThemedTouchable';
 import ThemedView from '../ThemedComponents/ThemedView';
 
-function SideBarMenu({navigation, reduxCloseSideBar}) {
+function SideBarMenu({navigation, isSideBarOpen, reduxCloseSideBar}) {
   const {loading, data} = useQuery(_queries.GET_ALL_SOURCES);
 
-  if (loading) return <View />;
+  if (loading || !isSideBarOpen) return <View />;
 
   return (
     <ThemedView style={styles.container}>
@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
 SideBarMenu.propTypes = {
   navigation: PropTypes.object,
   reduxCloseSideBar: PropTypes.func,
+  isSideBarOpen: PropTypes.bool,
+};
+
+const mapStateToProps = state => {
+  return {
+    isSideBarOpen: state.sideBarReducer.isSideBarOpen,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -66,4 +73,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SideBarMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(SideBarMenu);

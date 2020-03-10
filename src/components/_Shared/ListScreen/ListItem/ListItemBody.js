@@ -11,19 +11,19 @@ export default function ListItemBody({
   source,
   duration,
   navigation,
-  onPressBookmark,
 }) {
   return (
     <View style={styles.container}>
       <ThemedText style={styles.title}>{title}</ThemedText>
 
-      <ListItemBodyDetails
-        readTime={duration}
-        source={source}
-        id={id}
-        navigation={navigation}
-        onPressBookmark={onPressBookmark}
-      />
+      {source && (
+        <ListItemBodyDetails
+          readTime={duration}
+          source={source}
+          id={id}
+          navigation={navigation}
+        />
+      )}
     </View>
   );
 }

@@ -15,13 +15,12 @@ export default function ListItem({
   source,
   duration,
   navigation,
-  onPressBookmark,
   onPressItem,
 }) {
   return (
     <ThemedTouchable
       style={styles.container}
-      onPress={() => onPressItem(id, link, title)}>
+      onPress={() => onPressItem({id, link, title, image})}>
       <View style={styles.subContainer}>
         <View style={{width: 130}}>
           <ListItemImage image={image} />
@@ -33,7 +32,6 @@ export default function ListItem({
           source={source}
           duration={duration}
           navigation={navigation}
-          onPressBookmark={onPressBookmark}
         />
       </View>
     </ThemedTouchable>
@@ -61,6 +59,5 @@ ListItem.propTypes = {
   source: PropTypes.object,
   duration: PropTypes.string,
   navigation: PropTypes.object,
-  onPressBookmark: PropTypes.func,
   onPressItem: PropTypes.func,
 };

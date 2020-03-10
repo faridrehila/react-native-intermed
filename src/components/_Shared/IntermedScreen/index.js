@@ -5,9 +5,10 @@ import SideMenu from 'react-native-side-menu';
 import {connect} from 'react-redux';
 
 import _const from '../../../lib/const';
-import _queries from '../../../api/feeds/queries';
+import _queries from '../../../api/feeds';
 import SideBarMenu from '../SideBarMenu';
 import {ThemeContext} from '../../../context/ThemeProvider';
+import RadioPlayer from '../RadioPlayer';
 
 function IntermedScreen({children, navigation, isSideBarOpen}) {
   const {theme} = useContext(ThemeContext);
@@ -19,6 +20,12 @@ function IntermedScreen({children, navigation, isSideBarOpen}) {
       <SideMenu menu={menu} isOpen={isSideBarOpen}>
         {children}
       </SideMenu>
+      <View style={{position: 'absolute', bottom: 0, left: 0, right: 0}}>
+        <RadioPlayer
+        //style={styles.player}
+        //onTogglePlayback={togglePlayback}
+        />
+      </View>
     </View>
   );
 }

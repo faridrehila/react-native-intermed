@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {useQuery} from '@apollo/react-hooks';
 
 import _const from '../../../lib/const';
-import _queries from '../../../api/feeds/queries';
+import _queries from '../../../api/feeds';
 import ThemedIcon from '../ThemedComponents/ThemedIcon';
 
 export default function Bookmark({feedId}) {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import _const from '../../../lib/const';
 import ListScreen from '../../_Shared/ListScreen';
-import _queries from '../../../api/feeds/queries';
+import _queries from '../../../api/feeds';
 
 export default function SourceScreen({navigation}) {
   const {loading, error, data, fetchMore, refetch} = useQuery(
