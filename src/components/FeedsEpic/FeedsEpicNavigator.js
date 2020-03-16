@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation';
-import {navigateOnce} from '../../util/navigationUtil';
 
 import FeedsScreen from './FeedsScreen/FeedsScreen';
 import SourceScreen from './SourceScreen/SourceScreen';
