@@ -30,6 +30,9 @@ export default function FeedScreen({
       let spans = document.getElementsByTagName('span');      
       for (let e of spans) { e.style.color = "white"; e.style.backgroundColor = "black"; }    
 
+      let tds= document.getElementsByTagName('td');      
+      for (let e of tds) { e.style.color = "white"; e.style.backgroundColor = "black"; }    
+
       document.f1.submit(); 
     }, 100);
 `

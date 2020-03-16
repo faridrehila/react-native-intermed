@@ -18,10 +18,11 @@ export default function SourceScreen({navigation}) {
     },
   );
 
-  const onPressItem = (id, link, title) => {
+  const onPressItem = ({id, link, title}) => {
     navigation.navigate('FeedScreen', {
+      id,
       feedUrl: link,
-      title: title,
+      title,
     });
   };
 
