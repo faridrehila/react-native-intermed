@@ -20,12 +20,6 @@ function IntermedScreen({children, navigation, isSideBarOpen}) {
       <SideMenu menu={menu} isOpen={isSideBarOpen}>
         {children}
       </SideMenu>
-      <View style={{position: 'absolute', bottom: 0, left: 0, right: 0}}>
-        <RadioPlayer
-        //style={styles.player}
-        //onTogglePlayback={togglePlayback}
-        />
-      </View>
     </View>
   );
 }

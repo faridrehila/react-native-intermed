@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import {useQuery} from '@apollo/react-hooks';
 
@@ -86,12 +85,3 @@ export default function RadiosScreen({navigation}) {
 RadiosScreen.navigationOptions = {
   title: 'Playlist Example',
 };
-
-const styles = StyleSheet.create({
-  player: {
-    marginTop: 40,
-  },
-  state: {
-    marginTop: 20,
-  },
-});

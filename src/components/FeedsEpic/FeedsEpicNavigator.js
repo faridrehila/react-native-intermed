@@ -1,5 +1,5 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 import {navigateOnce} from '../../util/navigationUtil';
 
 import FeedsScreen from './FeedsScreen/FeedsScreen';
@@ -11,11 +11,11 @@ import ToggleSideBarMenu from '../_Shared/SideBarMenu/ToggleSideBarMenu';
 import ThemeSwitch from '../_Shared/ThemeSwitch';
 import ThemedHeaderTile from '../_Shared/ThemedComponents/ThemedHeaderTile';
 
-const FeedsNavigator = StackNavigator(
+const FeedsNavigator = createStackNavigator(
   {
     FeedsScreen: {
       screen: FeedsScreen,
-      navigationOptions: ({navigation, screenProps}) => ({
+      navigationOptions: ({screenProps}) => ({
         headerTitle: <ThemedHeaderTile title={'Intermed'} />,
         headerLeft: <ToggleSideBarMenu />,
         headerRight: <ThemeSwitch />,
@@ -46,6 +46,7 @@ const FeedsNavigator = StackNavigator(
           backgroundColor: screenProps.background,
         },
         headerTintColor: screenProps.foreground,
+        tabBarVisible: false,
       }),
       path: 'source/:id/:name',
     },
@@ -54,10 +55,6 @@ const FeedsNavigator = StackNavigator(
     initialRouteName: 'FeedsScreen',
     headerMode: 'screen',
   },
-);
-
-FeedsNavigator.router.getStateForAction = navigateOnce(
-  FeedsNavigator.router.getStateForAction,
 );
 
 export default FeedsNavigator;

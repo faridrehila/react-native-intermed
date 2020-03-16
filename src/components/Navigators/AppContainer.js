@@ -13,7 +13,9 @@ export default AppNavigator = createStackNavigator(
     },
     MainNavigator: {
       screen: ({navigation, screenProps}) => (
-        <MainNavigator screenProps={screenProps} />
+        <MainNavigator
+          screenProps={{parentNavigation: navigation, ...screenProps}}
+        />
       ),
       navigationOptions: {
         header: null,

@@ -13,6 +13,7 @@ export default function ThemedHeaderTile({title}) {
       style={[
         _const.INTERMED_TITLE_MOBILE,
         currentTheme === DARK_THEME && {color: 'white'},
+        {marginLeft: 7},
       ]}>
       {title}
     </Text>

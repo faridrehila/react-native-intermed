@@ -1,30 +1,32 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation';
 
 import FeedsEpicNavigator from '../FeedsEpic/FeedsEpicNavigator';
 import _const from '../../lib/const';
 import RadiosEpicNavigator from '../RadioEpic/RadioEpicNavigator';
+import TabBarNavigator from './TabBarNavigator';
 
-export default StackNavigator(
+export default createBottomTabNavigator(
   {
     FeedsEpic: {
-      screen: ({navigation, screenProps}) => (
-        <FeedsEpicNavigator screenProps={screenProps} />
-      ),
+      screen: FeedsEpicNavigator,
       path: 'articles',
-      navigationOptions: {header: null},
+      navigationOptions: {
+        header: null,
+      },
     },
     RadiosEpic: {
-      screen: ({navigation, screenProps}) => (
-        <RadiosEpicNavigator screenProps={screenProps} />
-      ),
+      screen: RadiosEpicNavigator,
       path: 'radios',
-      navigationOptions: {header: null},
+      navigationOptions: {
+        header: null,
+      },
     },
   },
   {
-    initialRouteName: 'RadiosEpic',
+    initialRouteName: 'FeedsEpic',
     swipeEnabled: false,
     animationEnabled: false,
+    tabBarComponent: TabBarNavigator,
   },
 );

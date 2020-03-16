@@ -4,9 +4,10 @@ import _const from '../../../lib/const';
 
 class SplashScreen extends React.PureComponent {
   componentDidMount() {
+    // TODO reset nav
     const self = this;
     setTimeout(function() {
-      self.props.navigation.navigate('MainNavigator');
+      self.props.navigation.navigate('App');
     }, 1000);
   }
 

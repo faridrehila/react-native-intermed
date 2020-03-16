@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import ThemeProvider, {ThemeContext} from '../context/ThemeProvider';
 
-import AppNavigator from './Navigators/AppContainer';
+import AppContainer from './Navigators/routes';
 import config from '../config';
 
 // Init store
@@ -20,7 +20,7 @@ const client = new ApolloClient({
 // INIT Reactotron
 import '../config/ReactotronConfig';
 
-export default function AppContainer() {
+export default function App() {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
@@ -28,7 +28,7 @@ export default function AppContainer() {
           <View style={{flex: 1}}>
             <ThemeContext.Consumer>
               {({theme, currentTheme}) => (
-                <AppNavigator screenProps={{...theme, currentTheme}} />
+                <AppContainer screenProps={{...theme, currentTheme}} />
               )}
             </ThemeContext.Consumer>
           </View>
