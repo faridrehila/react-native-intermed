@@ -9,8 +9,7 @@ import _const from '../../lib/const';
 import RadioPlayer from '../_Shared/RadioPlayer';
 
 function TabBarNavigator(props) {
-  const {navigation, navigationState} = props;
-  console.log('USE EFFECT', props);
+  const {navigation} = props;
 
   const playbackState = TrackPlayer.usePlaybackState();
 
@@ -27,13 +26,11 @@ function TabBarNavigator(props) {
 
   const currentRouteName =
     navigation.state.routes[navigation.state.index].routeName;
-
   const currentTab = navigation.state.routes[navigation.state.index];
-  console.log('currentTab', currentTab, navigationState);
-  const currentRoute = currentTab.routes[currentTab.index];
 
-  console.log('currentRoute', currentRoute);
-
+  if (currentTab.index !== 0) {
+    return <View />;
+  }
   return (
     <ThemedView
       style={{
@@ -83,9 +80,8 @@ function TabBarNavigator(props) {
     </ThemedView>
   );
 }
-/* 
+
 TabBarNavigator.propTypes = {
   navigation: PropTypes.any,
-}; */
-
+};
 export default TabBarNavigator;
