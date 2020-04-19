@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {TouchableHighlight, View} from 'react-native';
+import React from 'react';
+import {TouchableHighlight, View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import TrackPlayer from 'react-native-track-player';
 
@@ -23,7 +23,7 @@ function TabBarNavigator(props) {
       name: 'RadiosEpic',
     },
     {
-      icon: 'radio',
+      icon: 'insert-comment',
       name: 'FormEpic',
     },
   ];
@@ -37,32 +37,18 @@ function TabBarNavigator(props) {
   }
   return (
     <ThemedView
-      style={{
-        height:
-          playbackState === TrackPlayer.STATE_NONE ||
-          playbackState === TrackPlayer.STATE_STOPPED
-            ? 50
-            : 140,
-        backgroundColor: 'white',
-        elevation: 1,
-        shadowRadius: 2,
-        shadowOpacity: 0.1,
-        alignItems: 'center',
-        shadowColor: 'black',
-        shadowOffset: {width: 0, height: 1},
-        borderTopColor: 'lightgrey',
-        borderTopWidth: 1,
-      }}>
+      style={[
+        styles.container,
+        {
+          height:
+            playbackState === TrackPlayer.STATE_NONE ||
+            playbackState === TrackPlayer.STATE_STOPPED
+              ? 50
+              : 140,
+        },
+      ]}>
       <RadioPlayer />
-      <ThemedView
-        style={{
-          height: 50,
-          width: '100%',
-          backgroundColor: 'white',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}>
+      <ThemedView style={styles.containerMenu}>
         {routes.map(route => (
           <TouchableHighlight
             underlayColor={'lighgrey'}
@@ -84,6 +70,28 @@ function TabBarNavigator(props) {
     </ThemedView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    elevation: 1,
+    shadowRadius: 2,
+    shadowOpacity: 0.1,
+    alignItems: 'center',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 1},
+    borderTopColor: 'lightgrey',
+    borderTopWidth: 1,
+  },
+  containerMenu: {
+    height: 50,
+    width: '100%',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+});
 
 TabBarNavigator.propTypes = {
   navigation: PropTypes.any,

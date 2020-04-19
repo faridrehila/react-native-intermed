@@ -131,7 +131,7 @@ android {
         applicationId "re_boot.io.intermed"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 101006
+        versionCode 101007
         versionName "2.0"
     }
     splits {
