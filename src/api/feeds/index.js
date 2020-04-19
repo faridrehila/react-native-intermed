@@ -2,7 +2,7 @@ import {gql} from 'apollo-boost';
 
 const GET_ALL_FEEDS = gql`
   query GetAllFeeds($limit: Int!, $offset: Int!) {
-    feeds(limit: $limit, offset: $offset, order_by: {pubDate: desc}) {
+    feeds(limit: $limit, offset: $offset, order_by: {id: desc}) {
       author
       body
       categorie

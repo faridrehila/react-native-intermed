@@ -22,6 +22,10 @@ function TabBarNavigator(props) {
       icon: 'radio',
       name: 'RadiosEpic',
     },
+    {
+      icon: 'radio',
+      name: 'FormEpic',
+    },
   ];
 
   const currentRouteName =
