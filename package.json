@@ -18,7 +18,7 @@
     "apollo-client": "^2.6.8",
     "babel-preset-react-native": "^4.0.1",
     "graphql": "^14.6.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "path": "^0.12.7",
     "prop-types": "^15.6.0",
     "react": "16.9.0",
